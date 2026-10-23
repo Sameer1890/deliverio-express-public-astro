@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const services = [
+["Same-day delivery","Local delivery options in Karachi, depending on pickup time, destination and daily service coverage."],
+["Nationwide shipping","Ship to supported destinations across Pakistan using our available logistics partner network."],
+["Cash on Delivery (COD)","COD support for eligible sellers, subject to onboarding, service availability and settlement terms."],
+["E-commerce fulfillment","Courier workflows for online sellers who need a practical way to dispatch customer orders."],
+["Parcel & document delivery","Send eligible parcels and documents with shipment registration and available tracking."],
+["Business shipping solutions","Discuss your volume, pickup routine and destinations so we can confirm a suitable shipping arrangement."]
+];
+---
+<BaseLayout title="Courier Services in Karachi & Pakistan | Deliverio Express" description="Explore Deliverio Express courier services including Karachi same-day delivery options, nationwide shipping, COD, e-commerce logistics and business shipping." canonical="/services/">
+  <section class="page-hero"><div class="container"><p class="eyebrow">OUR SERVICES</p><h1>Shipping built around<br /><em>your business.</em></h1><p>Courier and logistics options for everyday parcels, online orders and business deliveries.</p></div></section>
+  <section class="section"><div class="container service-grid service-grid-large">{services.map(([title, description], index) => <article class="service-card"><span class="service-number">0{index + 1}</span><h2>{title}</h2><p>{description}</p></article>)}</div></section>
+  <section class="section dark-section"><div class="container split-section"><div><p class="eyebrow">LET’S TALK LOGISTICS</p><h2>Need a shipping partner?</h2></div><div><p>Share your shipment volume, routes and service requirements. We’ll confirm current availability and pricing with you.</p><a class="button" href="/contact/">Contact us <span aria-hidden="true">↗</span></a></div></div></section>
+</BaseLayout>

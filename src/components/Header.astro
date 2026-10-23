@@ -1,0 +1,29 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/services/", label: "Services" },
+  { href: "/pricing/", label: "Pricing" },
+  { href: "/about/", label: "About Us" },
+  { href: "/contact/", label: "Contact" },
+];
+const portal = import.meta.env.PUBLIC_PORTAL_URL || "#";
+const tracking = import.meta.env.PUBLIC_TRACKING_URL || "/#track";
+---
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Logistics that move your business forward</span>
+    <div><a href={tracking}>Track Shipment</a><span aria-hidden="true"> · </span><a href={portal}>Seller Login</a></div>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="/" aria-label="Deliverio Express homepage">
+      <img class="brand-emblem" src="/deliverio-emblem.png" alt="" />
+      <span class="brand-name">deliverio<span>_express</span><small>COURIER &amp; LOGISTICS</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="button button-small" href={portal}>Book a Shipment <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
