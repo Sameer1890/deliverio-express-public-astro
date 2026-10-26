@@ -21,7 +21,10 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" type="image/png" href="/deliverio-emblem.png" />
+
+<link rel="icon" type="image/png" sizes="560x490" href="/deliverio-emblem.png" />
+<link rel="shortcut icon" href="/deliverio-emblem.png" />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Deliverio Express" />
     <meta property="og:title" content={title} />
