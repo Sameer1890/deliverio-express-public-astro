@@ -29,6 +29,15 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Deliverio Express" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Deliverio Express",
+  "alternateName": "Deliverio",
+  "url": "https://deliverioexpress.com/"
+}
+</script>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
