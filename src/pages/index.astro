@@ -2,6 +2,29 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 const portal = import.meta.env.PUBLIC_PORTAL_URL || "#";
 const tracking = import.meta.env.PUBLIC_TRACKING_URL || "#track";
+const heroSlides = [
+  {
+    kicker: "GOING NATIONWIDE?",
+    title: "GO WITH US",
+    subtitle: "Trusted courier delivery across Pakistan",
+    badge: "DELIVERIO EXPRESS",
+    visualTitle: "Pakistan · Nationwide"
+  },
+  {
+    kicker: "SELLING ONLINE?",
+    title: "SHIP WITH US",
+    subtitle: "Parcel and Cash on Delivery logistics for sellers",
+    badge: "ECOMMERCE READY",
+    visualTitle: "Store · Customer"
+  },
+  {
+    kicker: "BUSINESS DELIVERY?",
+    title: "MOVE WITH US",
+    subtitle: "Courier solutions built for growing businesses",
+    badge: "BUSINESS LOGISTICS",
+    visualTitle: "Pickup · Delivery"
+  }
+];
 ---
 <BaseLayout
   title="Deliverio Express | Courier & Logistics Services in Karachi, Pakistan"
@@ -17,28 +40,42 @@ const tracking = import.meta.env.PUBLIC_TRACKING_URL || "#track";
       description: "Courier and logistics services for businesses and individuals in Pakistan."
     })} />
   </Fragment>
-  <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> COURIER & LOGISTICS • PAKISTAN</p>
-        <h1>Just a package?<br /><em>NO.</em></h1>
-        <p class="hero-lead">It’s your trust, your business, your dreams. We handle logistics from pickup to delivery.</p>
-        <p class="hero-note">Courier solutions designed for growing businesses, online sellers and people who need parcels to keep moving.</p>
-        <div class="hero-actions"><a class="button" href={portal}>Book a Shipment <span aria-hidden="true">↗</span></a><a class="button button-ghost" href={tracking}>Track a Parcel</a></div>
-        <div class="hero-proof"><span class="proof-dot"></span> Starting in Karachi · Nationwide delivery through partner networks where available</div>
+  <section class="hero hero-banner" aria-roledescription="carousel">
+    <div class="hero-slides">
+      {heroSlides.map((slide, index) => (
+        <article class:list={["hero-slide", "promo-slide", index === 0 && "is-active"]} data-slide={index} aria-hidden={index !== 0 ? "true" : "false"}>
+          <div class="promo-grid">
+            <div class="promo-copy">
+              <p class="promo-kicker">{slide.kicker}</p>
+              <h1>{slide.title}</h1>
+              <p class="promo-subtitle">{slide.subtitle}</p>
+              <div class="promo-actions">
+                <a class="button" href={portal}>Book a Shipment <span aria-hidden="true">↗</span></a>
+                <a class="button button-ghost" href={tracking}>Track a Parcel</a>
+              </div>
+            </div>
+            <div class="promo-visual" role="img" aria-label={slide.visualTitle}>
+              <div class="promo-cloud cloud-one"></div><div class="promo-cloud cloud-two"></div>
+              <div class="route-line route-a"></div><div class="route-line route-b"></div>
+              <div class="promo-package">
+                <div class="package-tape"></div>
+                <div class="package-name">deliverio<span>_express</span></div>
+                <div class="package-label"><b>SHIP TO</b><span>YOUR CUSTOMER</span></div>
+                <div class="package-arrows">↑ ↑</div>
+              </div>
+              <div class="promo-landmark">PK</div>
+            </div>
+          </div>
+          <div class="promo-badge">{slide.badge}</div>
+        </article>
+      ))}
+    </div>
+    <div class="hero-controls" aria-label="Hero carousel controls">
+      <button class="hero-arrow hero-prev" type="button" aria-label="Previous slide">←</button>
+      <div class="hero-dots">
+        {heroSlides.map((_, index) => <button class:list={["hero-dot", index === 0 && "is-active"]} type="button" data-go={index} aria-label={`Go to slide ${index + 1}`} aria-current={index === 0 ? "true" : undefined}></button>)}
       </div>
-      <div class="hero-visual" role="img" aria-label="Parcel ready for dispatch in a modern logistics warehouse">
-        <div class="visual-tag"><span class="tag-dot"></span> READY TO MOVE</div>
-        <div class="parcel">
-          <div class="parcel-tape"></div>
-          <div class="parcel-logo">deliverio<span>_express</span></div>
-          <div class="parcel-label"><b>SHIP TO</b><span>YOUR CUSTOMER</span><i></i><i></i><i></i></div>
-          <div class="parcel-mark">↑ ↑</div>
-        </div>
-        <div class="visual-caption"><strong>Every parcel matters.</strong><span>Every delivery is a promise.</span></div>
-        <div class="visual-ring ring-one"></div><div class="visual-ring ring-two"></div>
-      </div>
+      <button class="hero-arrow hero-next" type="button" aria-label="Next slide">→</button>
     </div>
     <div class="container trust-strip">
       <div><b>01</b><span><strong>Parcel delivery</strong><small>For everyday shipments</small></span></div>
@@ -91,6 +128,38 @@ const tracking = import.meta.env.PUBLIC_TRACKING_URL || "#track";
     </div>
   </section>
   <script>
+    const hero = document.querySelector(".hero");
+    const slides = Array.from(document.querySelectorAll(".hero-slide"));
+    const dots = Array.from(document.querySelectorAll(".hero-dot"));
+    let activeSlide = 0;
+    let carouselTimer;
+
+    const showSlide = (nextIndex) => {
+      if (!slides.length) return;
+      activeSlide = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("is-active", index === activeSlide);
+        slide.setAttribute("aria-hidden", index === activeSlide ? "false" : "true");
+      });
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("is-active", index === activeSlide);
+        if (index === activeSlide) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    };
+
+    const restartCarousel = () => {
+      window.clearInterval(carouselTimer);
+      carouselTimer = window.setInterval(() => showSlide(activeSlide + 1), 6000);
+    };
+
+    document.querySelector(".hero-prev")?.addEventListener("click", () => { showSlide(activeSlide - 1); restartCarousel(); });
+    document.querySelector(".hero-next")?.addEventListener("click", () => { showSlide(activeSlide + 1); restartCarousel(); });
+    dots.forEach((dot) => dot.addEventListener("click", () => { showSlide(Number(dot.dataset.go)); restartCarousel(); }));
+    hero?.addEventListener("mouseenter", () => window.clearInterval(carouselTimer));
+    hero?.addEventListener("mouseleave", restartCarousel);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) restartCarousel();
+
     const form = document.querySelector("#track-form");
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
