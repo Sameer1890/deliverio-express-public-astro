@@ -25,8 +25,28 @@ const tracking = import.meta.env.PUBLIC_TRACKING_URL || "/#track";
       <img class="brand-emblem" src="/deliverio-emblem-transparent.png?v=20261028" alt="Deliverio Express package route icon" />
       <span class="brand-name">deliverio<span>_express</span><small>COURIER &amp; LOGISTICS</small></span>
     </a>
-    <nav aria-label="Main navigation">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav id="main-menu" aria-label="Main navigation">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-      </div>
+  </div>
 </header>
+<script>
+  const menuButton = document.querySelector(".menu-toggle");
+  const menu = document.querySelector("#main-menu");
+
+  menuButton?.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+    menu?.classList.toggle("is-open", !isOpen);
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("is-open");
+      menuButton?.setAttribute("aria-expanded", "false");
+      menuButton?.setAttribute("aria-label", "Open navigation menu");
+    });
+  });
+</script>
