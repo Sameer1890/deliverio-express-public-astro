@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import PageLoader from "../components/PageLoader.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -48,6 +49,7 @@ const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
     <slot name="head" />
   </head>
   <body>
+    <PageLoader />
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main"><slot /></main>

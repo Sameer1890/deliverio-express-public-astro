@@ -4,24 +4,85 @@ const portal = import.meta.env.PUBLIC_PORTAL_URL || "#";
 const tracking = import.meta.env.PUBLIC_TRACKING_URL || "#track";
 const heroSlides = [
   {
+    kicker: "New to a courier? Try us risk-free.",
+    title: "Your first 3 parcels in Karachi are free",
+    subtitle: "No delivery charge or COD fee on your first 3 parcels. No contract. Send real orders and see how we work.",
+    fine: "*New sellers, Karachi only, one time per seller.",
+    cta: "Claim free parcels",
+    message: "Hi, I want to claim the 3 free parcels offer.",
+    badge: "FIRST 3 PARCELS",
+    visualMetric: "3",
+    visualTitle: "parcels on us"
+  },
+  {
+    kicker: "COD stuck with your courier for days?",
+    title: "COD paid within 24 hours",
+    subtitle: "We collect the cash from your customer and pay you within 24 hours of delivery. Every parcel is recorded, so you always know what you are owed.",
+    fine: "*Karachi deliveries.",
+    cta: "Talk to us",
+    message: "Hi, tell me about COD payment in 24 hours.",
+    badge: "COD SETTLEMENT",
+    visualMetric: "24h",
+    visualTitle: "COD payout"
+  },
+  {
+    kicker: "Paying too much per parcel?",
+    title: "Rs. 150 per parcel within Karachi",
+    subtitle: "A clear rate up to 1 kg, agreed in writing before your first pickup. Extra weight and COD fee are listed in your rate sheet.",
+    fine: "*Outside Karachi: ask for a quote.",
+    cta: "Get the rate sheet",
+    message: "Hi, please send your rate sheet.",
+    badge: "KARACHI DELIVERY",
+    visualMetric: "Rs.150",
+    visualTitle: "up to 1 kg, Karachi"
+  },
+  {
+    kicker: "Returns eating your profit?",
+    title: "Your first 3 returns are on us",
+    subtitle: "If a Karachi parcel comes back, we do not charge a return fee on your first 3. We also call your customer before delivery to reduce returns.",
+    fine: "*Karachi, first 30 days.",
+    cta: "Ask about returns",
+    message: "Hi, tell me about the free returns offer.",
+    badge: "FREE RETURNS",
+    visualMetric: "Rs.0",
+    visualTitle: "return fee on your first 3"
+  },
+  {
+    kicker: "No time to drop parcels at a branch?",
+    title: "Free pickup from your door",
+    subtitle: "Our rider collects from your home or shop at no charge when you have 3 or more parcels. Fewer? We collect them with the next day’s pickup.",
+    fine: "*Karachi.",
+    cta: "Book a pickup",
+    message: "Hi, I want to book a free pickup.",
+    badge: "FREE PICKUP",
+    visualMetric: "Free",
+    visualTitle: "pickup, 3+ parcels"
+  },
+  {
     kicker: "GOING NATIONWIDE?",
     title: "GO WITH US",
     subtitle: "Trusted courier delivery across Pakistan",
+    cta: "Book a Shipment",
     badge: "DELIVERIO EXPRESS",
+    visualMetric: "PK",
     visualTitle: "Pakistan · Nationwide"
   },
   {
     kicker: "SELLING ONLINE?",
     title: "SHIP WITH US",
     subtitle: "Parcel and Cash on Delivery logistics for sellers",
+    cta: "Book a Shipment",
     badge: "ECOMMERCE READY",
+    visualMetric: "COD",
     visualTitle: "Store · Customer"
   },
   {
     kicker: "BUSINESS DELIVERY?",
     title: "MOVE WITH US",
     subtitle: "Courier solutions built for growing businesses",
+    cta: "Book a Shipment",
     badge: "BUSINESS LOGISTICS",
+    visualMetric: "B2B",
     visualTitle: "Pickup · Delivery"
   }
 ];
@@ -50,23 +111,19 @@ const heroSlides = [
               <h1>{slide.title}</h1>
               <p class="promo-subtitle">{slide.subtitle}</p>
               <div class="promo-actions">
-                <a class="button" href={portal}>Book a Shipment <span aria-hidden="true">↗</span></a>
+                <a class="button" href={slide.message ? `https://wa.me/923320200789?text=${encodeURIComponent(slide.message)}` : portal}>{slide.cta} <span aria-hidden="true">↗</span></a>
                 <a class="button button-ghost" href={tracking}>Track a Parcel</a>
               </div>
+              {slide.fine && <p class="promo-fine">{slide.fine}</p>}
             </div>
-            <div class="promo-visual" role="img" aria-label={slide.visualTitle}>
-              <div class="promo-cloud cloud-one"></div><div class="promo-cloud cloud-two"></div>
-              <div class="route-line route-a"></div><div class="route-line route-b"></div>
-              <div class="promo-package">
-                <div class="package-tape"></div>
-                <div class="package-name">deliverio<span>_express</span></div>
-                <div class="package-label"><b>SHIP TO</b><span>YOUR CUSTOMER</span></div>
-                <div class="package-arrows">↑ ↑</div>
+            <div class="promo-visual">
+              <div class="promo-stat" aria-label={`${slide.visualMetric}: ${slide.visualTitle}`}>
+                <span class="promo-stat-badge">{slide.badge}</span>
+                <strong aria-hidden="true">{slide.visualMetric}</strong>
+                <span class="promo-stat-title">{slide.visualTitle}</span>
               </div>
-              <div class="promo-landmark">PK</div>
             </div>
           </div>
-          <div class="promo-badge">{slide.badge}</div>
         </article>
       ))}
     </div>
@@ -176,3 +233,238 @@ const heroSlides = [
     });
   </script>
 </BaseLayout>
+<style is:global>
+  .hero-banner {
+    isolation: isolate;
+    min-height: 0;
+    background:
+      radial-gradient(900px 520px at 88% 18%, rgba(0, 230, 195, 0.18), transparent 60%),
+      linear-gradient(160deg, #0c2a22 0%, #07201a 100%);
+  }
+
+  .hero-banner:before {
+    display: block;
+    opacity: 0.45;
+  }
+
+  .promo-grid {
+    min-height: 0;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    padding-block: 68px 38px;
+  }
+
+  .promo-copy {
+    padding: 0;
+    color: var(--white);
+  }
+
+  .promo-kicker {
+    margin-bottom: 14px;
+    color: var(--teal);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .promo-copy h1 {
+    max-width: 14ch;
+    color: var(--white);
+    font-size: clamp(2.5rem, 5.4vw, 4rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+  }
+
+  .promo-subtitle {
+    max-width: 48ch;
+    margin: 18px 0 0;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  .promo-fine {
+    margin: 14px 0 0;
+    color: #86a79b;
+    font-size: 0.875rem;
+  }
+
+  .promo-actions {
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .promo-actions .button {
+    min-height: 54px;
+    padding: 14px 24px;
+    border-radius: 12px;
+  }
+
+  .promo-actions .button-ghost {
+    border-color: var(--line);
+    background: transparent;
+    color: var(--white);
+  }
+
+  .promo-actions .button-ghost:hover {
+    border-color: var(--teal);
+    background: rgba(0, 230, 195, 0.08);
+    color: var(--white);
+  }
+
+  .promo-visual {
+    display: grid;
+    height: auto;
+    min-height: 300px;
+    overflow: visible;
+    place-items: center;
+  }
+
+  .promo-stat {
+    position: relative;
+    width: min(100%, 430px);
+    padding: 38px 28px;
+    border: 2px solid rgba(0, 230, 195, 0.55);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    text-align: center;
+  }
+
+  .promo-stat:before {
+    position: absolute;
+    top: -26px;
+    left: 50%;
+    width: 3px;
+    height: 26px;
+    background: repeating-linear-gradient(var(--teal) 0 7px, transparent 7px 13px);
+    content: "";
+  }
+
+  .promo-stat-badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--teal);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .promo-stat strong {
+    display: block;
+    color: var(--teal);
+    font: 700 clamp(4rem, 10vw, 7.25rem)/1 "Space Grotesk", sans-serif;
+    letter-spacing: -0.06em;
+  }
+
+  .promo-stat-title {
+    display: block;
+    margin-top: 12px;
+    color: var(--white);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  .hero-banner .hero-controls {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(var(--max), calc(100% - 44px));
+    margin-inline: auto;
+    padding-bottom: 26px;
+    transform: none;
+  }
+
+  .hero-banner .hero-arrow {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--white);
+  }
+
+  .hero-banner .hero-arrow:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .hero-banner .hero-dot {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .hero-banner .hero-dot.is-active {
+    background: var(--teal);
+    box-shadow: none;
+  }
+
+  .hero-banner .trust-strip {
+    min-height: 0;
+    margin-top: 0;
+    border-top: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  @media (max-width: 820px) {
+    .promo-grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+      padding-block: 48px 30px;
+    }
+
+    .promo-copy h1 {
+      max-width: none;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .promo-visual {
+      min-height: 0;
+    }
+
+    .promo-stat {
+      max-width: 340px;
+    }
+
+    .hero-banner .hero-controls {
+      padding-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .promo-grid {
+      width: calc(100% - 30px);
+      padding-block: 42px 28px;
+    }
+
+    .promo-copy {
+      text-align: left;
+    }
+
+    .promo-copy h1 {
+      font-size: clamp(2.6rem, 12vw, 3.5rem);
+    }
+
+    .promo-actions {
+      gap: 10px;
+    }
+
+    .promo-actions .button {
+      flex: 1 1 auto;
+      padding-inline: 16px;
+    }
+
+    .promo-stat {
+      padding: 30px 20px;
+    }
+
+    .hero-banner .hero-controls {
+      width: calc(100% - 30px);
+    }
+
+    .hero-banner .trust-strip {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding-block: 18px;
+    }
+  }
+</style>

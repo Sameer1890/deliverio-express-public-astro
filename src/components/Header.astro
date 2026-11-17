@@ -50,3 +50,93 @@ const tracking = import.meta.env.PUBLIC_TRACKING_URL || "/#track";
     });
   });
 </script>
+<style>
+  .site-header {
+    background: transparent;
+    border-bottom: 0;
+  }
+
+  .nav-wrap {
+    min-height: 72px;
+    margin-block: 12px;
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(11, 27, 24, 0.96);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .site-header nav {
+    flex: 1;
+    justify-content: center;
+    gap: clamp(8px, 1.8vw, 22px);
+  }
+
+  .site-header nav a {
+    padding: 8px 11px;
+    border-radius: 999px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .site-header nav a:hover {
+    background: rgba(0, 230, 195, 0.1);
+  }
+
+  .site-header nav a:last-child {
+    padding-inline: 20px;
+    background: var(--teal);
+    color: #042019;
+    font-weight: 700;
+  }
+
+  .site-header nav a:last-child:hover {
+    background: #42f4d7;
+  }
+
+  @media (max-width: 700px) {
+    .nav-wrap {
+      min-height: 66px;
+      margin-block: 8px;
+      padding: 8px 10px;
+      border-radius: 30px;
+    }
+
+    .site-header nav.is-open {
+      display: grid;
+      position: absolute;
+      z-index: 50;
+      left: -10px;
+      right: -10px;
+      top: calc(100% + 8px);
+      width: auto;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 8px 15px 12px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #061311;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    .site-header nav.is-open a {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      border-bottom: 1px solid rgba(210, 245, 235, 0.08);
+      border-radius: 0;
+      background: none;
+      color: #d3e0dc;
+      font-size: 0.88rem;
+    }
+
+    .site-header nav.is-open a:last-child {
+      justify-content: center;
+      margin-top: 8px;
+      border-bottom: 0;
+      border-radius: 999px;
+      background: var(--teal);
+      color: #042019;
+    }
+  }
+</style>
