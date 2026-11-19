@@ -246,3 +246,11 @@
       padding-block: 18px;
     }
   }
+
+.pricing-page{display:grid;max-width:860px;gap:26px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.rate-table{width:100%;border-collapse:collapse;text-align:left}.rate-table caption{padding:18px 20px;color:var(--teal);font-weight:700;text-align:left}.rate-table th,.rate-table td{padding:16px 20px;border-top:1px solid var(--line)}.rate-table thead th{color:var(--muted);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}.rate-table tbody th{font-weight:600}.rate-table td{color:var(--muted)}.pricing-page>.button{justify-self:start}
+.contact-details{display:grid;align-content:center;justify-items:start;gap:20px;padding:30px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.contact-email{color:var(--teal);font-weight:700;overflow-wrap:anywhere}.contact-location{margin:0;color:var(--muted)}
+.founder-card{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:38px;align-items:center}.founder-photo-placeholder{display:grid;min-height:320px;aspect-ratio:4/5;place-items:center;border:1px dashed rgba(0,230,195,.4);border-radius:20px;background:linear-gradient(145deg,#10231f,#0b1b18);color:var(--muted);font-weight:600}.founder-card h2{font:600 clamp(2rem,4vw,3.1rem)/1.08 "Space Grotesk",sans-serif;letter-spacing:-.055em;margin:0}
+.service-grid-large{grid-template-columns:repeat(2,minmax(0,1fr))}
+.footer-contact>span{color:var(--muted);font-size:.85rem}
+@media(min-width:901px){.footer-grid{grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(130px,.8fr)) minmax(140px,.7fr)}}
+@media(max-width:700px){.founder-card{grid-template-columns:1fr;gap:24px}.founder-photo-placeholder{min-height:280px;max-width:320px;width:100%}.rate-table th,.rate-table td{padding:14px 16px}.contact-details{padding:22px}}

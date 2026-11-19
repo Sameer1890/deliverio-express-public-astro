@@ -1,6 +1,5 @@
 ---
 const year = new Date().getFullYear();
-const portal = import.meta.env.PUBLIC_PORTAL_URL || "#";
 ---
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -12,7 +11,8 @@ const portal = import.meta.env.PUBLIC_PORTAL_URL || "#";
       <p>Helping businesses move parcels, serve customers and grow with confidence.</p>
     </div>
     <div><h2>Explore</h2><a href="/services/">Our services</a><a href="/pricing/">Pricing</a><a href="/about/">About us</a></div>
-    <div><h2>Customer help</h2><a href="/contact/">Contact us</a><a href={import.meta.env.PUBLIC_TRACKING_URL || "/#track"}>Track shipment</a><a href={portal}>Seller portal</a></div>
+    <div><h2>Customer help</h2><a href="/contact/">Contact us</a><a href={import.meta.env.PUBLIC_TRACKING_URL || "/#track"}>Track shipment</a></div>
+    <div class="footer-contact"><h2>Get in touch</h2><a href="https://wa.me/923320200789" target="_blank" rel="noopener noreferrer">+92 332 0200789</a><a href="mailto:deliverioexpress@gmail.com">deliverioexpress@gmail.com</a><span>Karachi, Pakistan</span></div>
     <div class="footer-socials"><h2>Follow us</h2><div class="social-links" aria-label="Deliverio Express social media">
       <a href="https://www.linkedin.com/company/deliverio-express" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.3 7.8H1.7V20h3.6V7.8ZM3.5 2A2.1 2.1 0 1 0 3.5 6.2 2.1 2.1 0 0 0 3.5 2ZM20.3 12.9c0-3.7-2-5.4-4.7-5.4-2.2 0-3.1 1.2-3.7 2V7.8H8.3V20h3.6v-6.1c0-1.6.3-3.2 2.3-3.2 2 0 2 1.8 2 3.3V20h3.6l.5-7.1Z"/></svg></a>
       <a href="https://www.facebook.com/share/19sk3SQ4eV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.1V6.5c0-.8.5-1 1-1h2V2h-2.8C10.8 2 10 4.5 10 6v2.1H7v4h3V22h4v-9.9h3l.5-4H14Z"/></svg></a>

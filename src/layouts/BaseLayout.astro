@@ -10,7 +10,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
 }
-const { title, description, canonical, ogImage = "/social-preview.svg" } = Astro.props;
+const { title, description, canonical, ogImage = "/social-preview.png" } = Astro.props;
 const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
 ---
 <!doctype html>
