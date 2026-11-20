@@ -15,6 +15,7 @@ const links = [
         <span aria-hidden="true">Logistics that move your business forward</span>
       </div>
     </div>
+    <span class="since-badge since-badge-mobile" aria-label="In the delivery industry since 2019">Since <strong>2019</strong></span>
   </div>
 </div>
 <header class="site-header">
@@ -27,6 +28,7 @@ const links = [
     <nav id="main-menu" aria-label="Main navigation">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
+    <span class="since-badge since-badge-desktop" aria-label="In the delivery industry since 2019">Since <strong>2019</strong></span>
   </div>
 </header>
 <script>
@@ -91,12 +93,70 @@ const links = [
     background: #42f4d7;
   }
 
+  .since-badge {
+    flex: none;
+    margin-left: 12px;
+    padding: 8px 13px;
+    color: var(--teal);
+    font-size: 0.86rem;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transform: rotate(-8deg);
+  }
+
+  .since-badge-mobile {
+    display: none;
+  }
+
+  .since-badge strong {
+    font-style: normal;
+    letter-spacing: 0.03em;
+  }
+
   @media (max-width: 700px) {
+    .since-badge-desktop {
+      display: none;
+    }
+
+    .since-badge-mobile {
+      display: block;
+      margin: 0 12px 0 0;
+      padding: 0;
+      font-size: 0.68rem;
+    }
+
+    .topbar-inner > .topbar-message {
+      width: auto;
+      flex: 1 1 0;
+      text-align: left;
+    }
+
+    .topbar-inner > .since-badge-mobile {
+      align-self: center;
+    }
+
     .nav-wrap {
       min-height: 66px;
       margin-block: 8px;
       padding: 8px 10px;
       border-radius: 30px;
+    }
+
+    .since-badge {
+      margin-left: 0;
+      font-size: 0.74rem;
+      letter-spacing: 0.01em;
+    }
+
+    .since-badge strong {
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+    }
+
+    .menu-toggle {
+      margin-left: auto;
     }
 
     .site-header nav.is-open {
