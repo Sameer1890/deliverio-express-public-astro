@@ -1,23 +1,130 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="Courier Rates & Shipping Pricing | Deliverio Express" description="View Deliverio Express Karachi courier rates, COD handling and free-pickup offers for online sellers." canonical="/pricing/">
-  <section class="page-hero"><div class="container"><p class="eyebrow">PRICING</p><h1>Clear rates.<br /><em>Better planning.</em></h1><p>Our Karachi delivery rates and seller offers, at a glance.</p></div></section>
-  <section class="section"><div class="container pricing-page">
-    <div class="table-wrap">
-      <table class="rate-table">
-        <caption>Deliverio Express rates and offers</caption>
-        <thead><tr><th scope="col">Service</th><th scope="col">Rate / details</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Karachi delivery (up to 1 kg)</th><td>Rs. 150</td></tr>
-          <tr><th scope="row">Each extra kg</th><td>Rs. 100</td></tr>
-          <tr><th scope="row">COD handling</th><td>2% (minimum Rs. 20)</td></tr>
-          <tr><th scope="row">Outside Karachi</th><td>Ask for a quote on WhatsApp</td></tr>
-          <tr><th scope="row">Pickup</th><td>Free with 3+ parcels</td></tr>
-          <tr><th scope="row">New sellers</th><td>First 3 parcels free in Karachi</td></tr>
-        </tbody>
-      </table>
+<BaseLayout title="Courier Rates & Shipping Pricing | Deliverio Express" description="Estimate Deliverio Express Karachi courier and COD charges, and request a WhatsApp quote for deliveries outside Karachi." canonical="/pricing/">
+  <section class="pricing-calculator-section">
+    <div class="container">
+      <h1 class="pricing-calculator-title">Calculate <span>Delivery Charges</span></h1>
+      <div class="pricing-calculator">
+        <form class="pricing-form" id="pricing-form">
+          <p class="pricing-form-heading">SHIPMENT DETAILS</p>
+          <label for="price-to">To</label>
+          <select id="price-to" name="to">
+            <option value="karachi">Karachi</option>
+            <option value="outside">Outside Karachi</option>
+          </select>
+          <label for="price-from">From</label>
+          <select id="price-from" name="from">
+            <option value="karachi">Karachi</option>
+            <option value="outside">Outside Karachi</option>
+          </select>
+          <label for="price-weight">Weight (kg)</label>
+          <input id="price-weight" name="weight" type="number" min="0.1" step="0.1" value="1" required />
+          <button class="button pricing-calculate" type="submit">Calculate Price</button>
+        </form>
+
+        <div class="pricing-result" aria-live="polite">
+          <div class="pricing-offer">
+            <span class="pricing-offer-ribbon" aria-hidden="true"><span>3<br />FREE</span></span>
+            <div><strong>New seller offer</strong><span>First 3 parcels free in Karachi</span></div>
+            <a href="https://wa.me/923320200789?text=Hi%2C%20I%20want%20to%20register%20as%20a%20seller." target="_blank" rel="noopener noreferrer">Register</a>
+          </div>
+          <div class="pricing-estimate">
+            <p class="pricing-result-label">Estimated Delivery Cost</p>
+            <svg class="pricing-delivery-animation" viewBox="0 0 360 96" aria-hidden="true">
+              <path class="pricing-animation-route" d="M52 50H304" />
+              <g class="pricing-animation-parcel" transform="translate(9 29)">
+                <path d="M2 8 17 1l15 7v24l-15 8L2 32z" fill="#0b211c" stroke="#00e6c3" stroke-width="2" stroke-linejoin="round" />
+                <path d="m2 8 15 9 15-9M17 17v16M12 3l11 8v8" fill="none" stroke="#00e6c3" stroke-width="1.7" stroke-linejoin="round" />
+              </g>
+              <g class="pricing-animation-pin" transform="translate(309 25)">
+                <path d="M18 0C8 0 0 8 0 18c0 12 18 32 18 32s18-20 18-32C36 8 28 0 18 0Z" fill="#00e6c3" />
+                <circle cx="18" cy="18" r="6" fill="#061311" />
+              </g>
+              <defs>
+                <g id="pricing-bike-art" stroke="#f5fbf9" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="-14" cy="7" r="7" fill="#061311" stroke-width="2.5" />
+                  <circle cx="14" cy="7" r="7" fill="#061311" stroke-width="2.5" />
+                  <path d="m-14 7 10-13 12 13h7M-4-6l-2 13m2-13h9l5 7" fill="none" stroke-width="2.5" />
+                  <path d="m-9 0q7-6 15-1l5 8H-12" fill="#00e6c3" stroke="#00e6c3" stroke-width="1.5" />
+                  <path d="m-4-6 2-8h7" fill="none" stroke-width="2.5" />
+                  <circle cx="0" cy="-17" r="4" fill="#00e6c3" stroke="none" />
+                  <path d="m0-13-3 7 8 2" fill="none" stroke-width="3" />
+                  <path d="M-32-12h13v10h-13z" fill="#0b211c" stroke="#00e6c3" stroke-width="1.7" />
+                </g>
+              </defs>
+              <g class="pricing-animation-bike">
+                <animateMotion id="pricing-bike-ride" begin="indefinite" dur="0.4s" calcMode="spline" keyTimes="0;1" keySplines="0.42 0 0.58 1" fill="freeze" rotate="auto" path="M54 50H294" />
+                <use href="#pricing-bike-art" />
+              </g>
+              <g class="pricing-animation-bike-static" transform="translate(294 50)">
+                <use href="#pricing-bike-art" />
+              </g>
+            </svg>
+            <p class="pricing-result-value" id="pricing-result-value">Rs. --</p>
+            <p class="pricing-result-note" id="pricing-result-note">Select your route and calculate your delivery charge.</p>
+            <a class="button pricing-quote-link" id="pricing-quote-link" href="https://wa.me/923320200789" target="_blank" rel="noopener noreferrer" hidden>Request a quote on WhatsApp <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <p class="pricing-pickup-note">Free pickup with 3+ parcels | Extra kg Rs. 100 | COD handling 2% (min Rs. 20)</p>
+        </div>
+      </div>
     </div>
-    <a class="button" href="https://wa.me/923320200789" target="_blank" rel="noopener noreferrer">Request pricing on WhatsApp <span aria-hidden="true">↗</span></a>
-  </div></section>
+  </section>
+
+  <script>
+    const pricingForm = document.querySelector<HTMLFormElement>("#pricing-form");
+    const priceTo = document.querySelector<HTMLSelectElement>("#price-to");
+    const priceFrom = document.querySelector<HTMLSelectElement>("#price-from");
+    const weightInput = document.querySelector<HTMLInputElement>("#price-weight");
+    const resultValue = document.querySelector<HTMLParagraphElement>("#pricing-result-value");
+    const resultNote = document.querySelector<HTMLParagraphElement>("#pricing-result-note");
+    const quoteLink = document.querySelector<HTMLAnchorElement>("#pricing-quote-link");
+    const estimatePanel = document.querySelector<HTMLDivElement>(".pricing-estimate");
+    const bikeRide = document.querySelector<SVGAnimateMotionElement>("#pricing-bike-ride");
+    const calculateButton = pricingForm?.querySelector<HTMLButtonElement>(".pricing-calculate");
+
+    pricingForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!priceTo || !priceFrom || !weightInput || !resultValue || !resultNote || !quoteLink || !estimatePanel) return;
+
+      const weight = Number(weightInput.value);
+      if (!Number.isFinite(weight) || weight <= 0) {
+        weightInput.setCustomValidity("Enter a weight greater than 0 kg.");
+        weightInput.reportValidity();
+        return;
+      }
+      weightInput.setCustomValidity("");
+
+      const outsideRoute = priceTo.value !== "karachi" || priceFrom.value !== "karachi";
+      let nextValue: string;
+      let nextNote: string;
+      let nextQuoteUrl = "";
+
+      if (outsideRoute) {
+        const message = `Hi, I need a delivery quote from ${priceFrom.options[priceFrom.selectedIndex].text} to ${priceTo.options[priceTo.selectedIndex].text} for a ${weight} kg parcel.`;
+        nextValue = "WhatsApp quote";
+        nextNote = "For shipments outside Karachi, ask our team for a route-specific price.";
+        nextQuoteUrl = `https://wa.me/923320200789?text=${encodeURIComponent(message)}`;
+      } else {
+        const total = 150 + Math.max(0, Math.ceil(weight) - 1) * 100;
+        nextValue = `Rs. ${Math.ceil(total).toLocaleString("en-PK")}`;
+        nextNote = "Karachi delivery charge. COD handling is charged separately.";
+      }
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const animationDuration = reducedMotion ? 0 : 400;
+      if (calculateButton) calculateButton.disabled = true;
+      estimatePanel.classList.add("is-calculating");
+      if (!reducedMotion) bikeRide?.beginElement();
+
+      window.setTimeout(() => {
+        resultValue.textContent = nextValue;
+        resultNote.textContent = nextNote;
+        quoteLink.hidden = !nextQuoteUrl;
+        if (nextQuoteUrl) quoteLink.href = nextQuoteUrl;
+        estimatePanel.classList.remove("is-calculating");
+        if (calculateButton) calculateButton.disabled = false;
+      }, animationDuration);
+    });
+  </script>
 </BaseLayout>
