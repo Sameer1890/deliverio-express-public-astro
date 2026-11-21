@@ -4,7 +4,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="Courier Rates & Shipping Pricing | Deliverio Express" description="Estimate Deliverio Express Karachi courier and COD charges, and request a WhatsApp quote for deliveries outside Karachi." canonical="/pricing/">
   <section class="pricing-calculator-section">
     <div class="container">
-      <h1 class="pricing-calculator-title">Calculate <span>Delivery Charges</span></h1>
+      <div class="pricing-page-heading">
+        <p class="eyebrow">KARACHI COURIER PRICING</p>
+        <h1 class="pricing-calculator-title">Know your delivery <span>cost upfront.</span></h1>
+        <p>Clear rates for Karachi deliveries. Choose your route and parcel weight to get an estimate.</p>
+      </div>
       <div class="pricing-calculator">
         <form class="pricing-form" id="pricing-form">
           <p class="pricing-form-heading">SHIPMENT DETAILS</p>
@@ -25,9 +29,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <div class="pricing-result" aria-live="polite">
           <div class="pricing-offer">
-            <span class="pricing-offer-ribbon" aria-hidden="true"><span>3<br />FREE</span></span>
-            <div><strong>New seller offer</strong><span>First 3 parcels free in Karachi</span></div>
-            <a href="https://wa.me/923320200789?text=Hi%2C%20I%20want%20to%20register%20as%20a%20seller." target="_blank" rel="noopener noreferrer">Register</a>
+            <span class="pricing-offer-ribbon" aria-hidden="true"><span>Rs. 99</span></span>
+            <div><strong>New sellers: first 3 parcels Rs. 99 each (Karachi)</strong><span>Delivery and COD handling included</span></div>
+            <a href="https://wa.me/923320200789?text=Hi%2C%20I%20want%20the%20Rs.%2099%20first-3-parcels%20offer." target="_blank" rel="noopener noreferrer">Claim offer</a>
           </div>
           <div class="pricing-estimate">
             <p class="pricing-result-label">Estimated Delivery Cost</p>
@@ -67,6 +71,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
           <p class="pricing-pickup-note">Free pickup with 3+ parcels | Extra kg Rs. 100 | COD handling 2% (min Rs. 20)</p>
         </div>
+      </div>
+      <div class="pricing-highlights" aria-label="Delivery pricing highlights">
+        <article><span class="pricing-highlight-icon">Rs</span><div><strong>Karachi delivery</strong><small>Rs. 150 up to 1 kg</small></div></article>
+        <article><span class="pricing-highlight-icon">+</span><div><strong>Free pickup</strong><small>With 3 or more parcels</small></div></article>
+        <article><span class="pricing-highlight-icon">24</span><div><strong>COD payout</strong><small>Within 24 hours of delivery</small></div></article>
       </div>
     </div>
   </section>

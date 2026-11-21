@@ -4,14 +4,14 @@ const tracking = import.meta.env.PUBLIC_TRACKING_URL || "#track";
 const heroSlides = [
   {
     kicker: "New to a courier? Try us risk-free.",
-    title: "Your first 3 parcels in Karachi are free",
-    subtitle: "No delivery charge or COD fee on your first 3 parcels. No contract. Send real orders and see how we work.",
-    fine: "*New sellers, Karachi only, one time per seller.",
-    cta: "Claim free parcels",
-    message: "Hi, I want to claim the 3 free parcels offer.",
+    title: "Your first 3 parcels in Karachi: Rs. 99 each",
+    subtitle: "Delivery and COD handling included. No contract. Send real orders and see how we work.",
+    fine: "*New sellers, one time per seller.",
+    cta: "Claim the Rs. 99 offer",
+    message: "Hi, I want the Rs. 99 first-3-parcels offer.",
     badge: "FIRST 3 PARCELS",
-    visualMetric: "3",
-    visualTitle: "parcels on us"
+    visualMetric: "Rs.99",
+    visualTitle: "per parcel, first 3"
   },
   {
     kicker: "COD stuck with your courier for days?",
@@ -37,14 +37,14 @@ const heroSlides = [
   },
   {
     kicker: "Returns eating your profit?",
-    title: "Your first 3 returns are on us",
-    subtitle: "If a Karachi parcel comes back, we do not charge a return fee on your first 3. We also call your customer before delivery to reduce returns.",
-    fine: "*Karachi, first 30 days.",
+    title: "Free returns (RTO) when 7 in 10 parcels are delivered",
+    subtitle: "Deliver 70% or more of your monthly Karachi parcels and we waive the return fee. Below that, returns are charged at Rs. [return fee].",
+    fine: "*Karachi. Counted monthly, minimum 20 parcels.",
     cta: "Ask about returns",
-    message: "Hi, tell me about the free returns offer.",
+    message: "Hi, tell me about the free returns (RTO) offer.",
     badge: "FREE RETURNS",
-    visualMetric: "Rs.0",
-    visualTitle: "return fee on your first 3"
+    visualMetric: "70%",
+    visualTitle: "delivered = free returns"
   },
   {
     kicker: "No time to drop parcels at a branch?",
@@ -151,6 +151,7 @@ const heroSlides = [
         <details><summary>Can I send a parcel with Cash on Delivery?</summary><p>We offer Cash on Delivery for online orders. Contact us on WhatsApp to get started as a seller.</p></details>
         <details><summary>How can I track my shipment?</summary><p>Use the tracking link and enter the tracking number assigned to your registered shipment.</p></details>
         <details><summary>How do I get delivery rates?</summary><p>Contact our team with pickup city, destination, parcel weight and service type so we can confirm the applicable rate.</p></details>
+        <details><summary>How do free returns work?</summary><p>If at least 70% of your Karachi parcels in a month are delivered (minimum 20 parcels), we do not charge a return fee that month. Below 70%, a return fee of Rs. [return fee] applies per parcel.</p></details>
       </div>
     </div>
   </section>

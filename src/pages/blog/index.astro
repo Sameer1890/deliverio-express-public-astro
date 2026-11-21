@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = [
+  {
+    slug: "what-is-cod-delivery",
+    category: "COD",
+    title: "What is COD delivery and how does it work?",
+    excerpt: "A clear guide to Cash on Delivery, parcel status and COD settlement for online sellers.",
+    icon: "cash",
+    image: "/blog/cod-delivery.svg",
+  },
+  {
+    slug: "wrong-address-delivery",
+    category: "Delivery",
+    title: "How to reduce failed deliveries from wrong addresses",
+    excerpt: "Simple address checks and customer confirmation steps that help prevent avoidable failed attempts.",
+    icon: "pin",
+    image: "/blog/address-delivery.svg",
+  },
+  {
+    slug: "prepare-parcels-for-pickup",
+    category: "Seller Guide",
+    title: "How to prepare parcels for courier pickup",
+    excerpt: "A practical pickup checklist covering labels, parcel packing and customer details.",
+    icon: "box",
+    image: "/blog/parcel-pickup.svg",
+  },
+  {
+    slug: "cod-payout-within-24-hours",
+    category: "COD",
+    title: "Understanding COD payout after delivery",
+    excerpt: "What COD payout means, what records matter and how sellers can keep settlement clear.",
+    icon: "clock",
+    image: "/blog/cod-payout.svg",
+  },
+  {
+    slug: "free-pickup-for-sellers",
+    category: "Karachi",
+    title: "When does free pickup apply?",
+    excerpt: "Understand the 3-or-more-parcels pickup rule and how to prepare a smooth pickup day.",
+    icon: "truck",
+    image: "/blog/free-pickup.svg",
+  },
+  {
+    slug: "outsourced-courier-partners",
+    category: "Shipping",
+    title: "Shipping outside Karachi through partner couriers",
+    excerpt: "What to confirm about route coverage, parcel details and delivery timelines outside Karachi.",
+    icon: "route",
+    image: "/blog/partner-courier.svg",
+  },
+];
+---
+<BaseLayout
+  title="Delivery & COD Blog | Deliverio Express"
+  description="Read practical guides about COD delivery, failed attempts, parcel pickup, courier shipping and seller workflows."
+  canonical="/blog/"
+>
+  <section class="blog-hero">
+    <div class="container blog-hero-inner">
+      <p class="blog-eyebrow">DELIVERIO BLOG</p>
+      <h1>Practical guides for<br /><span>better deliveries.</span></h1>
+      <p>Clear, useful articles for online sellers and businesses handling parcels and COD.</p>
+    </div>
+  </section>
+
+  <section class="blog-list-section">
+    <div class="container">
+      <div class="blog-featured-label"><span></span> Latest articles</div>
+      <div class="blog-grid">
+        {posts.map((post, index) => (
+          <article class:list={["blog-card", index === 0 && "blog-card-featured"]}>
+            <a href={`/blog/${post.slug}/`} aria-label={post.title}>
+              <div class:list={["blog-card-art", `blog-art-${post.icon}`]} aria-hidden="true">
+                <img src={post.image} alt="" loading="lazy" />
+              </div>
+              <div class="blog-card-copy">
+                <div class="blog-card-meta"><span>{post.category}</span><span aria-hidden="true">→</span></div>
+                <h2>{post.title}</h2>
+                <p>{post.excerpt}</p>
+                <span class="blog-read-link">Read article <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero{padding:76px 0 64px;border-bottom:1px solid rgba(20,217,181,.13);background:radial-gradient(ellipse at 82% 35%,rgba(20,217,181,.1),transparent 40%),#0c2a22}
+  .blog-hero .container{width:min(1120px,calc(100% - 44px));margin-inline:auto}
+  .blog-eyebrow{margin:0 0 13px;color:#14d9b5;font-size:.72rem;font-weight:700;letter-spacing:.15em}
+  .blog-hero h1{margin:0;font:700 clamp(2.8rem,6vw,5rem)/1.02 "Space Grotesk",sans-serif;letter-spacing:-.065em}
+  .blog-hero h1 span{color:#14d9b5}.blog-hero-inner>p:last-child{max-width:620px;margin:20px 0 0;color:#b7c9c3;font-size:1.05rem;line-height:1.7}
+  .blog-list-section{padding:58px 0 82px;background:#061311}
+  .blog-featured-label{display:flex;align-items:center;gap:9px;margin-bottom:20px;color:#b7c9c3;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.blog-featured-label span{width:7px;height:7px;border-radius:50%;background:#14d9b5;box-shadow:0 0 12px rgba(20,217,181,.5)}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .blog-card{overflow:hidden;border:1px solid rgba(210,245,235,.11);border-radius:18px;background:#0b1b18;transition:transform .2s,border-color .2s}.blog-card:hover{transform:translateY(-4px);border-color:rgba(20,217,181,.38)}
+  .blog-card>a{display:block;height:100%;text-decoration:none}.blog-card-art{display:grid;height:190px;place-items:center;overflow:hidden;border-bottom:1px solid rgba(210,245,235,.08);background:radial-gradient(circle at 50% 50%,rgba(20,217,181,.13),transparent 42%),linear-gradient(145deg,#10231f,#061311)}
+  .blog-card-art img{display:block;width:100%;height:100%;object-fit:cover}.blog-card-featured{grid-column:span 2}.blog-card-featured .blog-card-art{height:220px}
+  .blog-card-copy{padding:22px}.blog-card-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:#14d9b5;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.blog-card-meta>span:last-child{font-size:1.1rem}
+  .blog-card h2{margin:0 0 10px;color:#f5fbf9;font:600 1.25rem/1.25 "Space Grotesk",sans-serif;letter-spacing:-.03em}.blog-card p{margin:0;color:#a7bbb5;font-size:.86rem;line-height:1.65}.blog-read-link{display:inline-flex;gap:8px;margin-top:18px;color:#14d9b5;font-size:.78rem;font-weight:700}
+  @media(max-width:820px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.blog-card-featured{grid-column:span 2}}
+  @media(max-width:600px){.blog-hero{padding:58px 0 48px}.blog-hero .container{width:calc(100% - 32px)}.blog-hero h1{font-size:clamp(2.5rem,12vw,3.6rem)}.blog-list-section{padding:42px 0 56px}.blog-grid{grid-template-columns:1fr}.blog-card-featured{grid-column:auto}.blog-card-art,.blog-card-featured .blog-card-art{height:170px}.blog-card-copy{padding:18px}}
+</style>
