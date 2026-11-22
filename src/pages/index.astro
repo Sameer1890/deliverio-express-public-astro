@@ -5,7 +5,7 @@ const heroSlides = [
   {
     kicker: "New to a courier? Try us risk-free.",
     title: "Your first 3 parcels in Karachi: Rs. 99 each",
-    subtitle: "Delivery and COD handling included. No contract. Send real orders and see how we work.",
+    subtitle: "Delivery at Rs. 99 per parcel. No long-term commitment—send real orders and see how we work.",
     fine: "*New sellers, one time per seller.",
     cta: "Claim the Rs. 99 offer",
     message: "Hi, I want the Rs. 99 first-3-parcels offer.",
@@ -26,14 +26,14 @@ const heroSlides = [
   },
   {
     kicker: "Paying too much per parcel?",
-    title: "Rs. 150 per parcel within Karachi",
-    subtitle: "A clear rate up to 1 kg, agreed in writing before your first pickup. Extra weight and COD fee are listed in your rate sheet.",
+    title: "Rs. 150 per parcel below 1 kg in Karachi",
+    subtitle: "A clear Karachi rate below 1 kg, with approximately 20% off on selected delivery volumes. Extra weight and COD fee are listed in your rate sheet.",
     fine: "*Outside Karachi: ask for a quote.",
     cta: "Get the rate sheet",
     message: "Hi, please send your rate sheet.",
     badge: "KARACHI DELIVERY",
     visualMetric: "Rs.150",
-    visualTitle: "up to 1 kg, Karachi"
+    visualTitle: "below 1 kg, Karachi"
   },
   {
     kicker: "Returns eating your profit?",
@@ -119,7 +119,8 @@ const heroSlides = [
       <form class="track-form" id="track-form">
         <label for="tracking-number">Your tracking number</label>
         <div class="track-input-row"><input id="tracking-number" name="tracking" placeholder="e.g. DX123456789" autocomplete="off" required /><button class="button" type="submit">Track parcel <span aria-hidden="true">→</span></button></div>
-        <p class="form-hint">Tracking is available when your shipment has been registered in our system.</p>
+        <p class="form-hint">Enter the tracking number provided for your registered shipment.</p>
+        <p class="form-hint" id="tracking-status" role="alert" aria-live="assertive"></p>
       </form>
     </div>
   </section>
@@ -188,19 +189,36 @@ const heroSlides = [
     hero?.addEventListener("mouseleave", restartCarousel);
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) restartCarousel();
 
-    const form = document.querySelector("#track-form");
+    const form = document.querySelector<HTMLFormElement>("#track-form");
+    const trackingStatus = document.querySelector<HTMLParagraphElement>("#tracking-status");
+    const showTrackingFallback = () => {
+      if (trackingStatus) trackingStatus.textContent = "Your tracking number is not correct.";
+    };
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
-      const value = new FormData(form).get("tracking")?.toString().trim();
+      const input = form.elements.namedItem("tracking");
+      if (!(input instanceof HTMLInputElement)) return;
+      const value = input.value.trim();
       if (!value) return;
       const target = import.meta.env.PUBLIC_TRACKING_URL;
       if (!target) {
-        alert("Tracking portal is not connected yet. Please configure PUBLIC_TRACKING_URL.");
+        showTrackingFallback();
         return;
       }
-      const url = new URL(target);
-      url.searchParams.set("tracking", value);
-      window.location.href = url.toString();
+      try {
+        const url = new URL(target, window.location.origin);
+        if (url.protocol !== "http:" && url.protocol !== "https:") throw new Error("Tracking URL must use HTTP or HTTPS.");
+        url.searchParams.set("tracking", value);
+        window.location.href = url.toString();
+      } catch (error) {
+        console.error("The configured tracking URL is invalid.", error);
+        showTrackingFallback();
+      }
     });
   </script>
+  <style>
+    #tracking-status {
+      color: #ff9a9a !important;
+    }
+  </style>
 </BaseLayout>
